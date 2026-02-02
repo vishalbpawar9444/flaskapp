@@ -7,8 +7,8 @@ Port 3306 → Only from EC2 to RDS
 
 #### Step 2: Install Dependencies on EC2 #########
 SSH into EC2:
-sudo yum update -y
-sudo yum install python3 -y
+sudo yum update -y \
+sudo yum install python3 -y \
 sudo yum install python3-pip -y 
 
 #### Clone/Upload your app: #####
