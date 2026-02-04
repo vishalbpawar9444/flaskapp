@@ -4,7 +4,7 @@ import pymysql
 app = Flask(__name__)
 
 # MySQL (Docker on same EC2)
-DB_HOST = "127.0.0.1"
+DB_HOST = "mysql"
 DB_USER = "root"
 DB_PASSWORD = "root123"
 DB_NAME = "mydb"
