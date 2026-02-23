@@ -6,7 +6,7 @@ metadata:
     app: flaskapp
 spec:
   selector:
-    app: frontend-app
+    app: flaskapp
   type: LoadBalancer
   ports:
     - port: 5000
