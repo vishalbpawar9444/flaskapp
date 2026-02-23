@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp
+  labels:
+    app: flaskapp
+    tier: frontend
+
+spec:
+  replicas: 3
+
+  selector:
+    matchLabels:
+      app: flaskapp
+
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+        tier: frontend
+
+    spec:
+      containers:
+      - name: frontend
+        image: sagar0710/flaskapp
+        ports:
+        - containerPort: 5000
