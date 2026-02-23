@@ -9,7 +9,6 @@ pipeline {
         ECR_REPO = "project"
         IMAGE_TAG = "latest"
         IMAGE_NAME = "${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
-        CLUSTER_NAME = "mycluster"
 
     }
 
@@ -27,9 +26,7 @@ pipeline {
         stage('Build Docker Image') {
 
             steps {
-                sh '''
-                docker build -t project:${IMAGE_TAG} .
-                '''
+                sh 'docker build -t project:${IMAGE_TAG} .'
             }
 
         }
@@ -48,9 +45,7 @@ pipeline {
         stage('Tag Image') {
 
             steps {
-                sh '''
-                docker tag project:${IMAGE_TAG} ${IMAGE_NAME}
-                '''
+                sh 'docker tag project:${IMAGE_TAG} ${IMAGE_NAME}'
             }
 
         }
@@ -58,22 +53,34 @@ pipeline {
         stage('Push Image to ECR') {
 
             steps {
+                sh 'docker push ${IMAGE_NAME}'
+            }
+
+        }
+
+        stage('Deploy MySQL to EKS') {
+
+            steps {
                 sh '''
-                docker push ${IMAGE_NAME}
+                kubectl apply -f k8s/mysql-deployment.yaml
+                kubectl apply -f k8s/mysql-service.yaml
+
+                kubectl rollout status deployment/mysql
                 '''
             }
 
         }
 
-        stage('Deploy to EKS') {
+        stage('Deploy Flask to EKS') {
 
             steps {
                 sh '''
-                kubectl set image deployment/flaskapp \
-                frontend=${IMAGE_NAME} || true
+                kubectl set image deployment/flaskapp frontend=${IMAGE_NAME} || true
 
                 kubectl apply -f k8s/deployment.yaml
                 kubectl apply -f k8s/service.yaml
+
+                kubectl rollout status deployment/flaskapp
                 '''
             }
 
@@ -83,7 +90,6 @@ pipeline {
 
             steps {
                 sh '''
-                kubectl rollout status deployment/flaskapp
                 kubectl get pods
                 kubectl get svc
                 '''
@@ -96,7 +102,7 @@ pipeline {
     post {
 
         success {
-            echo 'Deployment Successful!'
+            echo 'Flask + MySQL Deployment Successful!'
         }
 
         failure {
