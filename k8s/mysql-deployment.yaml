@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - name: mysql
-        image: mysql:8.0
+        image: 435264620844.dkr.ecr.ap-south-1.amazonaws.com/mysql:latest
 
         ports:
         - containerPort: 3306
