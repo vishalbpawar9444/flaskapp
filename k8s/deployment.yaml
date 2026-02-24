@@ -22,6 +22,6 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: sagar0710/flaskapp
+        image: 435264620844.dkr.ecr.ap-south-1.amazonaws.com/project:latest
         ports:
         - containerPort: 5000
