@@ -4,8 +4,8 @@ pipeline {
 
     environment {
 
-        AWS_REGION = "ap-south-1"
-        ECR_REGISTRY = "435264620844.dkr.ecr.ap-south-1.amazonaws.com"
+        AWS_REGION = "ap-northeast-2"
+        ECR_REGISTRY = "410003306855.dkr.ecr.ap-northeast-2.amazonaws.com"
         ECR_REPO = "project"
         IMAGE_TAG = "latest"
         IMAGE_NAME = "${ECR_REGISTRY}/${ECR_REPO}:${IMAGE_TAG}"
