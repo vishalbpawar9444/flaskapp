@@ -18,7 +18,7 @@ pipeline {
 
             steps {
                 git branch: 'main',
-                url: 'https://github.com/NetTech-Trainer/flaskapp.git'
+                url: 'https://github.com/vishalbpawar9444/flaskapp.git'
             }
 
         }
