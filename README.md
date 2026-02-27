@@ -36,3 +36,32 @@ CREATE TABLE employees (
     email VARCHAR(100),
     salary DECIMAL(10,2)
 );
+
+### additional command for cicd###
+'''bash
+ 1  aws configure 
+    2  aws s3 ls
+    3  aws configure
+    4  aws s3 ls
+    5  sudo yum install git -y
+    6  sudo yum install docker
+    7  curl -LO "https://dl.k8s.io/release/$(curl -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+    8  chmod +x kubectl
+    9  sudo mv kubectl /usr/local/bin/
+   10  curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_Linux_amd64.tar.gz" | tar xz
+   11  sudo mv eksctl /usr/local/bin
+   12  eksctl create cluster --name mycluster --region ap-south-1 --node-type m7i-flex.large --nodes 2 --nodes-min 1 --nodes-max 3
+   13  kubectl get  nodes
+   14  java --version
+   15  sudo usermod -aG docker jenkins
+   16  sudo systemctl restart jenkins
+   17  ls -la
+   18  sudo cp -r .aws/ /var/lib/jenkins/
+   19  sudo chown -R jenkins:jenkins /var/lib/jenkins/.aws/
+   20  ls -ld /var/lib/jenkins/.aws/
+   21  ls -la 
+   22  sudo cp -r .kube/ /var/lib/jenkins/
+   23  sudo chown -R jenkins:jenkins /var/lib/jenkins/.kube/
+   24  kubectl get all
+   25  kubectl exec -it mysql-fbb4f56bd-qh5cj  -- bash
+   '''
